@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        markScript: ["MarkScript", "Helvetica"],
+        lora: ["lora", "Helvetica"],
+        raleway: ["raleway", "Helvetica"],
       },
     },
   },
