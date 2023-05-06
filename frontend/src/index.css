@@ -1,7 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
-  font-family: "MarkScript";
-  src: url("./assets/fonts/MarkScript.ttf") format("truetype");
+  font-family: "lora";
+  src: url("./assets/fonts/Lora.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "lora";
+  src: url("./assets/fonts/Lora-it.ttf") format("truetype");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "raleway";
+  src: url("./assets/fonts/Raleway.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "raleway";
+  src: url("./assets/fonts/Raleway-it.ttf") format("truetype");
+  font-style: italic;
 }
