@@ -11,7 +11,7 @@ Class Diagram:
 
 Overview:
 
-<img src="./other/dark_desktop.png" style="margin-top:15px;">
-<img src="./other/light_desktop.png" style="margin-top:15px;">
-<img src="./other/login_phone.png" style="margin-top:15px;">
-<img src="./other/light_phone.png" style="margin-top:15px;">
+<img src="./other/light_phone.png" style="margin-top:20px;">
+<img src="./other/light_desktop.png" style="margin-top:20px;">
+<img src="./other/login_phone.png" style="margin-top:20px;">
+<img src="./other/dark_desktop.png" style="margin-top:20px;">
