@@ -1,10 +1,8 @@
-// import React from "react";
-import { ReactNode, useContext } from "react";
 import React from "react";
 import * as bs from "react-icons/bs";
 import * as ai from "react-icons/ai";
-import * as gr from "react-icons/gr";
 import { ThemeContext } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 const ComponentNav = () => {
   const lightButton =
@@ -20,9 +18,11 @@ const ComponentNav = () => {
 
   return (
     <nav className="right-16 sm:mr-10 flex flex-row items-center gap-x-4 absolute">
-      <button className={theme == "light" ? lightIcon : darkIcon}>
-        <ai.AiOutlineHome></ai.AiOutlineHome>
-      </button>
+      <Link to="/">
+        <button className={theme == "light" ? lightIcon : darkIcon}>
+          <ai.AiOutlineHome></ai.AiOutlineHome>
+        </button>
+      </Link>
       <button
         className={
           theme == "light"
