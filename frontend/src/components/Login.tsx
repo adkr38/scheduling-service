@@ -205,14 +205,11 @@ function LoginGoBack(props: {
 }) {
   const iconStyle =
     props.theme == "light"
-      ? "text-xl text-slate-600 w-full h-full"
-      : "text-xl text-slate-200 w-full h-full";
+      ? "text-2xl text-slate-600"
+      : "text-2xl text-slate-200";
   return (
-    <div className="flex flex-row items-center justify-center absolute right-10 top-6 gap-x-6 z-10">
-      <button
-        className="w-full h-full z-10"
-        onClick={() => props.setManualLogin(false)}
-      >
+    <div className="flex flex-row items-center justify-center absolute right-10 top-6 gap-x-6">
+      <button className="z-50" onClick={() => props.setManualLogin(false)}>
         <bi.BiArrowBack className={iconStyle}></bi.BiArrowBack>
       </button>
     </div>
