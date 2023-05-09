@@ -16,9 +16,9 @@ interface CardProps {
 const Card = ({ icon, text }: CardProps) => {
   const { theme } = React.useContext(ThemeContext);
   const lightCard =
-    "px-8 py-4 text-center bg-gradient-to-br from-stone-300/50 to-stone-200/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 group";
+    "px-14 py-4 text-center bg-gradient-to-br from-stone-300/50 to-stone-200/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 group";
   const darkCard =
-    "px-8 py-4 text-center bg-gradient-to-br from-stone-700/50 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 group";
+    "px-14 py-4 text-center bg-gradient-to-br from-stone-700/50 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 group";
   const lightP =
     "text-sm text-slate-700 font-raleway group-active:text-stone-50";
   const darkP =
@@ -35,10 +35,10 @@ const Hero = () => {
   const { theme } = React.useContext(ThemeContext);
 
   const lightContainer: string =
-    "left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-3 m-auto bg-stone-50 justify-center items-center bg-cover bg-opacity-70 absolute p-8";
+    "left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-50 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
 
   const darkContainer: string =
-    "rounded-lg left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-3 m-auto bg-stone-800 justify-center items-center bg-cover bg-opacity-70 absolute p-8";
+    "rounded-lg left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-800 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
 
   const bgImg: string =
     "pointer-events-none absolute h-full w-full object-cover -z-10 opacity-30 rounded-xl";
@@ -46,7 +46,7 @@ const Hero = () => {
   const textContainer: string = "w-full m-auto";
 
   const cardsContainer: string =
-    "m-auto h-1/2 w-full md:w-3/4 grid gap-y-6 gap-x-12 grid-cols-2 items-center";
+    "m-auto h-1/2 w-full md:w-3/4 grid gap-y-6 gap-x-8 grid-cols-2 items-center";
 
   const lightTitle: string =
     "font-lora font-normal text-stone-600 text-3xl sm:text-4xl";
