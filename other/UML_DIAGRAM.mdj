@@ -2476,7 +2476,7 @@
 											"top": 277,
 											"width": 103,
 											"height": 13,
-											"text": "#Date date",
+											"text": "#LocalDate date",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2510,7 +2510,7 @@
 											"top": 307,
 											"width": 103,
 											"height": 13,
-											"text": "#CutType activity",
+											"text": "#string activity",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4515,9 +4515,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGH/K0mrcBj4BY="
 							},
-							"name": "Date date",
-							"visibility": "protected",
-							"type": ""
+							"name": "LocalDate date",
+							"visibility": "protected"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4535,9 +4534,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGH/K0mrcBj4BY="
 							},
-							"name": "CutType activity",
-							"visibility": "protected",
-							"type": ""
+							"name": "string activity",
+							"visibility": "protected"
 						}
 					]
 				},
@@ -4626,7 +4624,8 @@
 								"$ref": "AAAAAAGH/K5APcetWSQ="
 							},
 							"name": "string activity",
-							"visibility": "protected"
+							"visibility": "protected",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4655,7 +4654,8 @@
 								"$ref": "AAAAAAGH/K5APcetWSQ="
 							},
 							"name": "string imageUrl",
-							"visibility": "protected"
+							"visibility": "protected",
+							"type": ""
 						}
 					]
 				},
