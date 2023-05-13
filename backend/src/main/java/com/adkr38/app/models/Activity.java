@@ -1,17 +1,16 @@
-package com.adkr38.bshop.models;
-import java.time.LocalDate;
-
+package com.adkr38.app.models;
 import jakarta.persistence.*;
 
 @Entity
 public class Activity{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  int id;
+  Long id;
 
   String activity;
   int duration;
   double price;
+  @Column(name="image_url")
   String imageUrl;
 
   public Activity(String activity, int duration, double price, String imageUrl){

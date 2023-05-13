@@ -1,13 +1,13 @@
-package com.adkr38.bshop;
+package com.adkr38.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BshopApplication {
+public class AppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BshopApplication.class, args);
+		SpringApplication.run(AppApplication.class, args);
 	}
 
 }

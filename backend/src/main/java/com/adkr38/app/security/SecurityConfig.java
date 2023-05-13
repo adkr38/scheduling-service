@@ -1,6 +1,7 @@
-package com.adkr38.bshop.security;
-import com.adkr38.bshop.filters.CustomAuthenticationFilter;
-import com.adkr38.bshop.filters.CustomAuthorizationFilter;
+package com.adkr38.app.security;
+import com.adkr38.app.filters.CustomAuthenticationFilter;
+import com.adkr38.app.filters.CustomAuthorizationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
  */
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
     // UserDetailsService is an interface provided by Spring Security that defines a way to retrieve user information
     @Autowired
@@ -90,25 +92,4 @@ public class SecurityConfig {
         // Build the security filter chain to be returned.
         return http.build();
     }
-
-	public UserDetailsService getUserDetailsService() {
-		return userDetailsService;
-	}
-
-	public void setUserDetailsService(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
-	}
-
-	public AuthenticationManagerBuilder getAuthManagerBuilder() {
-		return authManagerBuilder;
-	}
-
-	public void setAuthManagerBuilder(AuthenticationManagerBuilder authManagerBuilder) {
-		this.authManagerBuilder = authManagerBuilder;
-	}
-
-  public SecurityConfig(PasswordEncoder passwordEncoder,AuthenticationManager authenticationManager,SecurityFilterChain SecurityFilterChain,UserDetailsService userDetailsService,AuthenticationManagerBuilder authManagerBuilder){ 
-
-  }
-
 }

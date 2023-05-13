@@ -1,4 +1,4 @@
-package com.adkr38.bshop.dtos;
+package com.adkr38.app.dtos;
 import java.util.List;
 
 public class SuccessDTO<T> implements ResponseDTO{

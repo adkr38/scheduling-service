@@ -1,4 +1,4 @@
-package com.adkr38.bshop.dtos;
+package com.adkr38.app.dtos;
 
 public class ErrorDTO implements ResponseDTO{
   protected String message;
