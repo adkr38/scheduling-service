@@ -5,11 +5,10 @@ import * as bs from "react-icons/bs";
 import * as ai from "react-icons/ai";
 import * as gr from "react-icons/gr";
 import { ThemeContext } from "../context/ThemeContext";
+import { LoginContext } from "../context/LoginContext";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-
   const lightButton =
     "text-stone-600 font-raleway text-md border border-stone-900 bg-stone-50 rounded-md px-4 py-0.5 active:bg-stone-200";
 
@@ -19,6 +18,7 @@ const Nav = () => {
   const lightIcon = "text-2xl text-stone-600";
   const darkIcon = "text-2xl text-stone-200";
 
+  const { logged, username } = React.useContext(LoginContext);
   const { theme, toggleTheme } = React.useContext(ThemeContext);
 
   return (
@@ -47,7 +47,7 @@ const Nav = () => {
       </a>
       <Link to="/login">
         <button className={theme == "light" ? lightButton : darkButton}>
-          {loggedIn ? "Log out" : "Log in"}
+          {logged ? `Bienvendo ${username}` : "Log in"}
         </button>
       </Link>
     </nav>
