@@ -7,6 +7,7 @@ import * as ai from "react-icons/ai";
 import * as gr from "react-icons/gr";
 import { ThemeContext } from "../context/ThemeContext";
 import Nav from "./Nav";
+// import { LoginContext } from "../context/LoginContext";
 
 interface CardProps {
   icon: ReactNode;
@@ -33,6 +34,7 @@ const Card = ({ icon, text }: CardProps) => {
 
 const Hero = () => {
   const { theme } = React.useContext(ThemeContext);
+  // const { logged, username, sessionId } = React.useContext(LoginContext);
 
   const lightContainer: string =
     "left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-50 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
