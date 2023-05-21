@@ -1,45 +1,38 @@
 package com.adkr38.app.models;
-import jakarta.persistence.*;
-import java.util.*;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.util.*;
 import static jakarta.persistence.FetchType.EAGER;
 
 /**
  * Entity class for representing a User in the database
  */
 @Entity
+@Table(name="users")
 public class User {
     /**
      * The unique identifier for the user
      */
     @Id
-    /**
-     * The id field is generated automatically by the database
-     */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     /**
-     * The name of the user (To be used as username)
+     * The name of the user
      */
     private String name;
 
     /**
-     * The email of the user
+     * The username used to log in
      */
-    private String email;
-
+    private String username;
 
     /**
      * The password used to log in
      */
     private String password;
-
-    /**
-     * The phone number of the user
-     */
-    @Column(name="phone_number")
-    private String phoneNumber;
 
     /**
      * The roles that the user has
@@ -48,8 +41,15 @@ public class User {
     private Collection<Role> roles = new ArrayList<>();
 
     @OneToMany(fetch = EAGER, mappedBy = "user")
-    List<Appointment> appointments;
+    private List<Appointment> appointments;
 
+    public User(String name, String username, String password ,Collection<Role> roles, List<Appointment> appointments){
+      setName(name);
+      setUsername(username);
+      setPassword(password);
+      setRoles(roles);
+      setAppointments(appointments);
+  }
 
     public Long getId() {
       return id;
@@ -67,28 +67,20 @@ public class User {
       this.name = name;
     }
 
-    public String getEmail() {
-      return email;
+    public String getUsername() {
+      return username;
     }
 
-    public void setEmail(String email) {
-      this.email = email;
+    public void setUsername(String username) {
+      this.username = username;
     }
 
     public String getPassword() {
       return password;
     }
-  
+
     public void setPassword(String password) {
       this.password = password;
-    }
-
-    public String getPhoneNumber() {
-      return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-      this.phoneNumber = phoneNumber;
     }
 
     public Collection<Role> getRoles() {
@@ -107,11 +99,8 @@ public class User {
       this.appointments = appointments;
     }
 
-  public User(String name, String password, String email, String phoneNumber){
-    setName(name);
-    setPassword(password);
-    setEmail(email);
-    setPhoneNumber(phoneNumber);
-  }
+    public User(){};
+
+
 
 }
