@@ -93,9 +93,10 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/login/**").permitAll()
+                .requestMatchers(HttpMethod.POST,"/api/users").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/validate").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/appointments").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/users").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
-                .requestMatchers(HttpMethod.POST,"/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
         );
         // add the custom authentication filter to the http security object
