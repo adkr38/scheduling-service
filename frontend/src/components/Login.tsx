@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import {
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline,
+  // GoogleLoginResponse,
+  // GoogleLoginResponseOffline,
   GoogleLogin,
 } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { ThemeContext } from "../context/ThemeContext";
+import { LoginContext } from "../context/LoginContext";
 import ComponentNav from "./ComponentNav";
 import * as ai from "react-icons/ai";
 import * as bi from "react-icons/bi";
 import bgImage from "../assets/bg2.jpg";
+import backendUtils from "../utils/backendUtils";
 
 const GoogleLoginComponent = (props: { theme: string }) => {
   const responseGoogle = (response: any) => {
+    console.log(response);
     // TODO: Handle Facebook login response
   };
 
@@ -48,6 +52,7 @@ const GoogleLoginComponent = (props: { theme: string }) => {
 
 const FacebookLoginComponent = (props: { theme: string }) => {
   const responseFacebook = (response: any) => {
+    console.log(response);
     // TODO: Handle Facebook login response
   };
 
@@ -67,7 +72,7 @@ const FacebookLoginComponent = (props: { theme: string }) => {
       autoLoad={false}
       onClick={() => console.log("Facebook button clicked")}
       callback={responseFacebook}
-      render={(renderProps) => (
+      render={(renderProps: any) => (
         <button
           onClick={renderProps.onClick}
           disabled={renderProps.disabled}
@@ -81,70 +86,12 @@ const FacebookLoginComponent = (props: { theme: string }) => {
   );
 };
 
-function ManualRegister(props: { theme: string }) {
-  const [username, setUsername] = useState<string>("");
-  const [mail, setMail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  function handleUsernameChange(event: React.FormEvent<HTMLInputElement>) {
-    setUsername((event.target as HTMLInputElement).value);
-  }
-
-  function handleMailChange(event: React.FormEvent<HTMLInputElement>) {
-    setMail((event.target as HTMLInputElement).value);
-  }
-
-  function handlePasswordChange(event: React.FormEvent<HTMLInputElement>) {
-    setPassword((event.target as HTMLInputElement).value);
-  }
-
-  const pStyle =
-    props.theme == "light"
-      ? "text-sm text-stone-600 font-lora text-left"
-      : "text-sm text-stone-200 font-lora text-left";
-
-  const inputStyle =
-    props.theme == "light"
-      ? "bg-stone-50 rounded-md px-4 py-0.5 my-2 outline-none font-raleway text-md text-left"
-      : "bg-stone-600 rounded-md px-4 py-0.5 my-2 outline-none font-raleway text-md text-left";
-
-  return (
-    <>
-      <div>
-        <p className={pStyle}>Correo electrónico</p>
-        <input
-          type="text"
-          onChange={handleMailChange}
-          value={mail}
-          className={inputStyle}
-        />
-      </div>
-      <div>
-        <p className={pStyle}>Nombre de usuario</p>
-        <input
-          type="text"
-          onChange={handleUsernameChange}
-          value={username}
-          className={inputStyle}
-        />
-      </div>
-
-      <div>
-        <p className={pStyle}>Contraseña</p>
-        <input
-          type="text"
-          onChange={handlePasswordChange}
-          value={password}
-          className={inputStyle}
-        />
-      </div>
-    </>
-  );
-}
-
 function ManualLogin(props: { theme: string }) {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [passwordVisibile, setPasswordVisible] = useState<boolean>(false);
+  const { toggleLogged } = React.useContext(LoginContext);
+  const navigate = useNavigate();
 
   function handleUsernameChange(event: React.FormEvent<HTMLInputElement>) {
     setUsername((event.target as HTMLInputElement).value);
@@ -154,6 +101,18 @@ function ManualLogin(props: { theme: string }) {
     setPassword((event.target as HTMLInputElement).value);
   }
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    let bearerToken = await backendUtils.logIn(username, password);
+    if (!bearerToken) {
+      console.log("Failed response");
+      return false;
+    }
+    bearerToken = bearerToken as string;
+    toggleLogged(bearerToken as string, username);
+    navigate("/");
+  }
+
   const pStyle =
     props.theme == "light"
       ? "text-sm text-stone-600 font-lora text-left"
@@ -161,17 +120,25 @@ function ManualLogin(props: { theme: string }) {
 
   const inputStyle =
     props.theme == "light"
-      ? "bg-stone-50 rounded-md px-4 py-0.5 my-2 outline-none font-raleway sm:text-md w-full text-stone-600"
-      : "bg-stone-600 rounded-md px-4 py-0.5 my-2 outline-none font-raleway sm:text-md w-full text-stone-200";
+      ? "bg-stone-50 rounded-md px-4 py-1 my-2 outline-none font-raleway w-full text-sm text-stone-600"
+      : "bg-stone-600 rounded-md px-4 py-1 my-2 outline-none font-raleway w-full text-sm text-stone-200";
 
   const buttonStyle =
     props.theme == "light"
-      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4"
-      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 ";
+      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4 active:scale-95"
+      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 active:scale-95";
+
+  const eyeIconStyle =
+    props.theme == "light"
+      ? "absolute text-slate-800 top-1/2  right-1  -translate-x-1/2 -translate-y-1/2"
+      : "absolute text-slate-200 top-1/2  right-1  -translate-x-1/2 -translate-y-1/2";
 
   return (
-    <div className="m-auto h-full flex flex-col items-center justify-center gap-10 w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <form className="w-3/4 m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <>
+      <form
+        onSubmit={handleSubmit}
+        className="w-3/4 m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      >
         <div className="w-full flex flex-col items-center">
           <p className={pStyle}>Nombre de usuario</p>
           <input
@@ -181,21 +148,35 @@ function ManualLogin(props: { theme: string }) {
             className={inputStyle}
           />
         </div>
-
         <div className="w-full flex flex-col items-center text-left">
           <p className={pStyle}>Contraseña</p>
-          <input
-            type="text"
-            onChange={handlePasswordChange}
-            value={password}
-            className={inputStyle}
-          />
+          <div className="w-full flex flex-row relative">
+            <input
+              type={passwordVisibile ? "text" : "password"}
+              onChange={handlePasswordChange}
+              value={password}
+              className={inputStyle}
+            />
+
+            <button
+              type="button"
+              onClick={() => setPasswordVisible(!passwordVisibile)}
+            >
+              {passwordVisibile ? (
+                <ai.AiOutlineEyeInvisible
+                  className={eyeIconStyle}
+                ></ai.AiOutlineEyeInvisible>
+              ) : (
+                <ai.AiOutlineEye className={eyeIconStyle}></ai.AiOutlineEye>
+              )}
+            </button>
+          </div>
         </div>
         <button type="submit" className={buttonStyle}>
           Login
         </button>
       </form>
-    </div>
+    </>
   );
 }
 
@@ -249,7 +230,7 @@ function Login() {
         {manualLogin && (
           <LoginGoBack theme={theme} setManualLogin={setManualLogin} />
         )}
-        <form className="w-full m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="w-full m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {manualLogin ? (
             <ManualLogin theme={theme} />
           ) : (
@@ -264,9 +245,12 @@ function Login() {
               </button>
               <GoogleLoginComponent theme={theme} />
               <FacebookLoginComponent theme={theme} />
+              <Link to="/register">
+                <button>REGISTER</button>
+              </Link>
             </>
           )}
-        </form>
+        </div>
       </div>
     </>
   );
