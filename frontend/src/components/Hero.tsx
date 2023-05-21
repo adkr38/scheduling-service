@@ -16,9 +16,9 @@ interface CardProps {
 const Card = ({ icon, text }: CardProps) => {
   const { theme } = React.useContext(ThemeContext);
   const lightCard =
-    "px-14 py-4 text-center bg-gradient-to-br from-stone-300/50 to-stone-200/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 group";
+    "px-16 py-6 text-center bg-gradient-to-br from-stone-300/75 to-stone-200/75 flex flex-col items-center justify-center rounded-lg gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 group";
   const darkCard =
-    "px-14 py-4 text-center bg-gradient-to-br from-stone-700/50 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 group";
+    "px-14 py-4 text-center bg-gradient-to-br from-stone-700/75 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 group";
   const lightP =
     "text-sm text-slate-700 font-raleway group-active:text-stone-50";
   const darkP =
@@ -43,10 +43,10 @@ const Hero = () => {
   const bgImg: string =
     "pointer-events-none absolute h-full w-full object-cover -z-10 opacity-30 rounded-xl";
 
-  const textContainer: string = "w-full m-auto";
+  const textContainer: string = "w-full m-auto mt-0";
 
   const cardsContainer: string =
-    "m-auto h-1/2 w-full md:w-3/4 grid gap-y-6 gap-x-8 grid-cols-2 items-center";
+    "m-auto h-1/2 w-full md:w-3/4 grid gap-y-6 gap-x-8 grid-cols-2 lg:grid-cols-4 lg:h-full items-center";
 
   const lightTitle: string =
     "font-lora font-normal text-stone-600 text-3xl sm:text-4xl";
