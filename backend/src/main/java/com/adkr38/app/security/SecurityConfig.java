@@ -3,6 +3,7 @@ import com.adkr38.app.filters.CustomAuthenticationFilter;
 import com.adkr38.app.filters.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
@@ -16,7 +17,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -31,6 +34,7 @@ public class SecurityConfig {
     // UserDetailsService is an interface provided by Spring Security that defines a way to retrieve user information
     @Autowired
     private UserDetailsService userDetailsService;
+
 
     // Autowired instance of the AuthenticationManagerBuilder
     @Autowired
@@ -58,6 +62,7 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+
     /**
      * Bean definition for SecurityFilterChain
      *
@@ -66,6 +71,7 @@ public class SecurityConfig {
      * @throws Exception if there is an issue building the SecurityFilterChain
      */
     @Bean
+    @CrossOrigin(origins = "http://localhost:5173") 
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // CustomAuthenticationFilter instance created
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authManagerBuilder.getOrBuild());
@@ -76,11 +82,19 @@ public class SecurityConfig {
         // set the session creation policy to stateless
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
+        // Configure CORS
+        CorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.addAllowedOrigin("http://localhost:5173");
+        corsConfig.addAllowedMethod("*");
+        corsConfig.addAllowedHeader("*");
+        ((UrlBasedCorsConfigurationSource) source).registerCorsConfiguration("/api/**", corsConfig);
+        http.cors().configurationSource(source);
 
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/login/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/get-tasks").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .requestMatchers(HttpMethod.GET,"/api/users").hasAnyAuthority("ROLE_USER")
+                .requestMatchers(HttpMethod.GET, "/api/appointments").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/users").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                 .requestMatchers(HttpMethod.POST,"/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
         );
