@@ -26,14 +26,13 @@ export const LoginProvider: React.FC<React.PropsWithChildren<{}>> = (props) => {
   const [username, setUsername] = React.useState<string>("");
 
   React.useEffect(() => {
-    console.log("Testing this out!");
     const storedSessionId = cookies.sessionId;
     const storedUsername = cookies.username;
     const checkSessionValid = async () => {
       if (storedSessionId && storedUsername) {
         const sessionIsValid = await validateSession(storedSessionId);
         if (!sessionIsValid) {
-          console.log("Session id isn't actually valid!");
+          console.warn("Session id is invalid!");
           removeCookie("sessionId");
           removeCookie("username");
         } else {
