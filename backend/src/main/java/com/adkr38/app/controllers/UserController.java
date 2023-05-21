@@ -15,6 +15,11 @@ public class UserController{
   @Autowired
   private UserService userService;
 
+  @GetMapping("/validate")
+  ResponseEntity<ResponseDTO> getValidation(){
+    return ResponseEntity.status(200).body(new SuccessDTO<>(List.of(), "success", 200));
+  }
+
   @GetMapping("/users")
   ResponseEntity<ResponseDTO> getUsers(){
     return ResponseEntity.status(200).body(new SuccessDTO<>(userService.getUsers(), "success", 200));
