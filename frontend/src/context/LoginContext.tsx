@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import validateSession from "../utils/backendUtils.ts";
+import backendUtils from "../utils/backendUtils.ts";
 
 interface LoginContextProps {
   logged: boolean;
@@ -30,12 +30,15 @@ export const LoginProvider: React.FC<React.PropsWithChildren<{}>> = (props) => {
     const storedUsername = cookies.username;
     const checkSessionValid = async () => {
       if (storedSessionId && storedUsername) {
-        const sessionIsValid = await validateSession(storedSessionId);
+        const sessionIsValid = await backendUtils.validateSession(
+          storedSessionId
+        );
         if (!sessionIsValid) {
           console.warn("Session id is invalid!");
           removeCookie("sessionId");
           removeCookie("username");
         } else {
+          console.log("Setting logged here!");
           setLogged(true);
           setSessionId(storedSessionId);
           setUsername(storedUsername);
@@ -49,6 +52,7 @@ export const LoginProvider: React.FC<React.PropsWithChildren<{}>> = (props) => {
     setLogged(!logged);
     setUsername(username);
     setSessionId(sessionId);
+    console.log("Setting cookies here!");
     setCookie("sessionId", sessionId);
     setCookie("username", username);
   }
