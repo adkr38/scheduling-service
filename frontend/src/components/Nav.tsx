@@ -5,6 +5,7 @@ import * as ai from "react-icons/ai";
 import { ThemeContext } from "../context/ThemeContext";
 import { LoginContext } from "../context/LoginContext";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 const Nav = () => {
   const lightButton =
@@ -43,11 +44,15 @@ const Nav = () => {
       >
         <ai.AiOutlinePhone></ai.AiOutlinePhone>
       </a>
-      <Link to="/login">
-        <button className={theme == "light" ? lightButton : darkButton}>
-          {logged ? `Bienvendo ${username}` : "Log in"}
-        </button>
-      </Link>
+      {logged ? (
+        <Logout username={username} theme={theme} />
+      ) : (
+        <Link to="/login">
+          <button className={theme == "light" ? lightButton : darkButton}>
+            Log in
+          </button>
+        </Link>
+      )}
     </nav>
   );
 };
