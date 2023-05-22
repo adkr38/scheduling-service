@@ -17,13 +17,11 @@ interface CardProps {
 const Card = ({ icon, text }: CardProps) => {
   const { theme } = React.useContext(ThemeContext);
   const lightCard =
-    "px-16 py-6 text-center bg-gradient-to-br from-stone-300/75 to-stone-200/75 flex flex-col items-center justify-center rounded-lg gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 group";
+    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-300/75 to-stone-200/75 flex flex-col items-center justify-center rounded-lg gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 active:shadow-inner hover:scale-110 hover:rounded-2xl active:duration-100 hover:duration-300";
   const darkCard =
-    "px-14 py-4 text-center bg-gradient-to-br from-stone-700/75 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 group";
-  const lightP =
-    "text-sm text-slate-700 font-raleway group-active:text-stone-50";
-  const darkP =
-    "text-sm text-slate-200 font-raleway group-active:text-stone-600";
+    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-700/75 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 active:shadow-inner hover:scale-110 hover:rounded-2xl active:duration-100 hover:duration-300";
+  const lightP = "text-sm text-slate-700 font-raleway";
+  const darkP = "text-sm text-slate-200 font-raleway";
   return (
     <div className={theme == "light" ? lightCard : darkCard}>
       {icon}
