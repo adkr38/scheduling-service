@@ -22,8 +22,8 @@ const GoogleLoginComponent = (props: { theme: string }) => {
 
   const buttonStyle =
     props.theme == "light"
-      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4"
-      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 ";
+      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4 active:scale-95"
+      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300  active:scale-95";
 
   const iconStyle =
     props.theme == "light"
@@ -58,8 +58,8 @@ const FacebookLoginComponent = (props: { theme: string }) => {
 
   const buttonStyle =
     props.theme == "light"
-      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4"
-      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 ";
+      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4 active:scale-95"
+      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 active:scale-95";
 
   const iconStyle =
     props.theme == "light"
@@ -213,8 +213,8 @@ function Login() {
 
   const buttonStyle =
     theme == "light"
-      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4"
-      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 ";
+      ? "bg-gradient-to-br from-stone-50/50 to-stone-50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-sm flex flex-row items-center gap-4 active:scale-95"
+      : "bg-gradient-to-br from-stone-400 to-stone-700/50 rounded-md px-4 py-1 font-lora shadow-stone-700 shadow-md flex flex-row items-center gap-4 text-stone-300 active:scale-95";
 
   const iconStyle =
     theme == "light" ? "text-md text-stone-600" : "text-md text-stone-200";
@@ -230,7 +230,7 @@ function Login() {
         {manualLogin && (
           <LoginGoBack theme={theme} setManualLogin={setManualLogin} />
         )}
-        <div className="w-full m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="w-full m-auto flex items-center justify-center p-8 pt-12 flex-col gap-y-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {manualLogin ? (
             <ManualLogin theme={theme} />
           ) : (
@@ -246,7 +246,7 @@ function Login() {
               <GoogleLoginComponent theme={theme} />
               <FacebookLoginComponent theme={theme} />
               <Link to="/register">
-                <button>REGISTER</button>
+                <button className={buttonStyle}>Registrarse</button>
               </Link>
             </>
           )}
