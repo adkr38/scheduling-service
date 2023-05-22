@@ -2,7 +2,8 @@ import React from "react";
 import "./index.css";
 import Hero from "./components/Hero";
 import Login from "./components/Login";
-import { ThemeProvider, ThemeContext } from "./context/ThemeContext.tsx";
+import Register from "./components/Register";
+import { ThemeContext } from "./context/ThemeContext";
 import { Routes, Route, HashRouter, Outlet, Navigate } from "react-router-dom";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
 
