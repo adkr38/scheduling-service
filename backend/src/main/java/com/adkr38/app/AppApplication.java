@@ -1,7 +1,9 @@
 package com.adkr38.app;
 import com.adkr38.app.models.Role;
 import com.adkr38.app.models.User;
+import com.adkr38.app.models.Activity;
 import com.adkr38.app.services.impl.UserService;
+import com.adkr38.app.services.impl.ActivityService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,9 +27,11 @@ public class AppApplication{
     }
 
     @Bean
-    CommandLineRunner run(UserService userService) {
+    CommandLineRunner run(UserService userService,ActivityService activityService ) {
         return args -> {
 
+            Activity mullet = new Activity("Mullet", 30*60, 20,"https://www.amazon.es/photos/share/fMkirw5Jsk2fUqxLResFa05COg6mOyoGWaXGeaf1E5A");
+            activityService.saveActivity(mullet);
             userService.saveRole(new Role(null,"ROLE_USER"));
             userService.saveRole(new Role(null,"ROLE_ADMIN"));
 

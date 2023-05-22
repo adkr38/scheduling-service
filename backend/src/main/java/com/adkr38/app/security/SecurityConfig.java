@@ -94,8 +94,14 @@ public class SecurityConfig {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/login/**").permitAll()
                 .requestMatchers(HttpMethod.POST,"/api/users").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/activity/all").permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/validate").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/appointments").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/appointments/all").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/appointments/availability").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/appointments/byUser/").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/appointments/delete").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                .requestMatchers(HttpMethod.POST,"/api/activity").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(HttpMethod.POST,"/api/appointments").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/users").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                 .anyRequest().authenticated()
         );

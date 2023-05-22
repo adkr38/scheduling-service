@@ -5,6 +5,9 @@ import com.adkr38.app.models.*;
 import com.adkr38.app.dtos.*;
 import com.adkr38.app.services.impl.UserService;
 import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -17,7 +20,7 @@ public class UserController{
 
   @GetMapping("/validate")
   ResponseEntity<ResponseDTO> getValidation(){
-    return ResponseEntity.status(200).body(new SuccessDTO<>(List.of(), "success", 200));
+    return ResponseEntity.status(200).body(new SuccessDTO<>(List.of(), "Valid sessionId", 200));
   }
 
   @GetMapping("/users")
@@ -27,10 +30,10 @@ public class UserController{
 
 
   @PostMapping("/users")
-  ResponseEntity<ResponseDTO> saveUser(User user){
+  ResponseEntity<ResponseDTO> saveUser(@RequestBody User user){
     User savedUser = userService.saveUser(user);
-
-    return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(savedUser), "user created", 201));
+    userService.addRoleToUser(savedUser.getUsername(), "ROLE_USER");
+    return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(savedUser), "User created & given ROLE_USER", 201));
   }
 
 

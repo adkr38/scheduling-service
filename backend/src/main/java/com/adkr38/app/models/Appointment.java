@@ -12,12 +12,12 @@ public class Appointment{
 
   protected LocalDate date;
   @ManyToOne
-  @JoinColumn(name = "activity_id")
+  @JoinColumn(name= "activity_id")
   protected Activity activity;
 
   @ManyToOne
   @JsonIgnore
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name= "user_id")
   User user;
 
   public Appointment(LocalDate date, Activity activity,User user){
