@@ -17,9 +17,9 @@ interface CardProps {
 const Card = ({ icon, text }: CardProps) => {
   const { theme } = React.useContext(ThemeContext);
   const lightCard =
-    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-300/75 to-stone-200/75 flex flex-col items-center justify-center rounded-lg gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 active:shadow-inner hover:scale-110 hover:rounded-2xl active:duration-100 duration-300";
+    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-300/75 to-stone-200/75 shadow-stone-400 shadow-sm flex flex-col items-center justify-center rounded-lg gap-y-4 active:from-stone-400/50 active:to-stone-300/50 active:scale-90 active:shadow-inner active:shadow-stone-400 hover:scale-110 hover:rounded-2xl active:duration-100 duration-300";
   const darkCard =
-    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-700/75 to-stone-800/75 flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 active:shadow-inner hover:scale-110 hover:rounded-2xl active:duration-100 duration-300";
+    "px-[3.2rem] sm:px-14 py-6 text-center bg-gradient-to-br from-stone-700/75 to-stone-800/75 shadow-slate-800 shadow-sm flex flex-col items-center justify-center rounded-md gap-y-4 active:from-stone-700/50 active:to-stone-600/50 active:scale-90 active:shadow-inner  active:shadow-slate-900  hover:scale-110 hover:rounded-2xl active:duration-100 duration-300";
   const lightP = "text-sm text-slate-700 font-raleway";
   const darkP = "text-sm text-slate-200 font-raleway";
   return (
@@ -38,7 +38,7 @@ const Hero = () => {
     "left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-50 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
 
   const darkContainer: string =
-    "rounded-lg left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-800 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
+    "left-1/2 top-2/3 -translate-x-1/2 -translate-y-2/3 w-3/4 h-3/4 flex flex-col gap-2 m-auto bg-stone-800 justify-center items-center bg-cover bg-opacity-70 absolute p-12";
 
   const bgImg: string =
     "pointer-events-none absolute h-full w-full object-cover -z-10 opacity-30 rounded-xl";
