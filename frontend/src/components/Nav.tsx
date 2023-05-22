@@ -21,7 +21,7 @@ const Nav = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
 
   return (
-    <nav className="right-16 sm:mr-10 flex flex-row items-center gap-x-4 absolute">
+    <nav className="z-50 right-16 sm:mr-10 flex flex-row items-center gap-x-4 absolute">
       <a
         className={theme == "light" ? lightIcon : darkIcon}
         href="mailto:adkr38@gmail.com"

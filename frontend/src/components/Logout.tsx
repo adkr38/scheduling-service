@@ -24,12 +24,12 @@ const Logout = (props: { username: string; theme: string }) => {
     }
 
     const containerStyling: string =
-      "popupBg z-50 text-center w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-sm ";
+      "popupBg z-30 text-center w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
 
     const wrapperStyling: string =
       props.theme == "light"
-        ? "px-6 flex flex-col gap-6 items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-gradient-to-br from-stone-300/75 to-stone-400/75 text-center rounded-lg shadow-md shadow-slate-300"
-        : "px-6 flex flex-col gap-6 items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-gradient-to-br from-stone-800/75 to-stone-700/75 text-center rounded-lg shadow-md shadow-slate-800";
+        ? "backdrop-filter backdrop-blur-sm px-6 flex flex-col gap-6 items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-gradient-to-br from-stone-300/75 to-stone-400/50 text-center rounded-lg shadow-sm shadow-slate-500"
+        : "backdrop-filter backdrop-blur-sm  px-6 flex flex-col gap-6 items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-gradient-to-br from-stone-800/75 to-stone-700/50 text-center rounded-lg shadow-sm shadow-slate-900";
 
     const pStyling: string =
       props.theme == "light"
