@@ -1,5 +1,5 @@
 package com.adkr38.app.models;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -10,7 +10,7 @@ public class Appointment{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   protected Long id;
 
-  protected LocalDate date;
+  protected LocalDateTime date;
   @ManyToOne
   @JoinColumn(name= "activity_id")
   protected Activity activity;
@@ -20,13 +20,13 @@ public class Appointment{
   @JoinColumn(name= "user_id")
   User user;
 
-  public Appointment(LocalDate date, Activity activity,User user){
+  public Appointment(LocalDateTime date, Activity activity,User user){
     setDate(date);
     setActivity(activity);
     setUser(user);
   }
 
-public LocalDate getDate() {
+public LocalDateTime getDate() {
 	return date;
 }
 
@@ -46,7 +46,7 @@ public void setUser(User user) {
 	this.user = user;
 }
 
-public void setDate(LocalDate date) {
+public void setDate(LocalDateTime date) {
 	this.date = date;
 }
 

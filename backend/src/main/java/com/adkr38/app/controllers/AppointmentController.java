@@ -20,7 +20,7 @@ class AppointmentController{
   private AppointmentRepository appointmentRepository;
 
   @GetMapping("/all")
-  private ResponseEntity<ResponseDTO> getActivities(){
+  private ResponseEntity<ResponseDTO> getAppointments(){
 
     return ResponseEntity.status(200).body(new SuccessDTO<>(appointmentRepository.findAll(), "success", 200));
 
@@ -30,11 +30,25 @@ class AppointmentController{
   private ResponseEntity<ResponseDTO> saveAppointment(Appointment appointment){
     int savedAppointment = appointmentService.saveAppointment(appointment);
 
-    if (savedAppointment == 0){
-      return ResponseEntity.status(409).body(new ErrorDTO("Appointment already exists", 409));
+    switch (savedAppointment){
+      case 0:
+        return ResponseEntity.status(409).body(new ErrorDTO("Appointment already exists", 409));
+      case 400:
+        return ResponseEntity.status(400).body(new ErrorDTO("Appointment minute must be at 00 or 30", 400));
+
+      case 404:
+        return ResponseEntity.status(400).body(new ErrorDTO("Appointment date has already passed", 400));
+
+      case 409:
+        return ResponseEntity.status(409).body(new ErrorDTO("There's another overlapping appointment already scheduled", 409));
     }
 
     return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(), "Appointment created", 201));
+    // if (savedAppointment == 0){
+    //   return ResponseEntity.status(409).body(new ErrorDTO("Appointment already exists", 409));
+    // }
+    //
+    // return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(), "Appointment created", 201));
 
   }
 
