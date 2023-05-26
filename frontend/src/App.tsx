@@ -3,15 +3,16 @@ import "./index.css";
 import Hero from "./components/Hero";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Catalogue from "./components/Catalogue";
 import { ThemeContext } from "./context/ThemeContext";
 import { Routes, Route, HashRouter, Outlet, Navigate } from "react-router-dom";
 
 function App() {
   const lightContainer: string =
-    "h-screen w-screen bg-gradient-to-tr from-stone-50/10 to-stone-100/10 p-12";
+    "min-h-screen w-full bg-gradient-to-tr from-stone-50/10 to-stone-100/10 p-12";
 
   const darkContainer: string =
-    "h-screen w-screen bg-gradient-to-tr from-stone-600 to-stone-900 p-12";
+    "min-h-screen w-full bg-gradient-to-tr from-stone-600 to-stone-900 p-12";
 
   const { theme } = React.useContext(ThemeContext);
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/catalogue" element={<Catalogue />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
 
