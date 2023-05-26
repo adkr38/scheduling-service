@@ -8,14 +8,12 @@ public class Activity{
   Long id;
 
   String activity;
-  int duration;
   double price;
   @Column(name="image_url")
   String imageUrl;
 
-  public Activity(String activity, int duration, double price, String imageUrl){
+  public Activity(String activity, double price, String imageUrl){
     setActivity(activity);
-    setDuration(duration);
     setPrice(price);
     setImageUrl(imageUrl);
   }
@@ -27,14 +25,6 @@ public String getActivity() {
 
 public void setActivity(String activity) {
 	this.activity = activity;
-}
-
-public int getDuration() {
-	return duration;
-}
-
-public void setDuration(int duration) {
-	this.duration = duration;
 }
 
 public double getPrice() {
