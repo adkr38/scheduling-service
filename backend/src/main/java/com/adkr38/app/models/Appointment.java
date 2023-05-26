@@ -1,7 +1,7 @@
 package com.adkr38.app.models;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
-import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Appointment{
@@ -16,8 +16,8 @@ public class Appointment{
   protected Activity activity;
 
   @ManyToOne
-  @JsonIgnore
   @JoinColumn(name= "user_id")
+  @JsonIgnore
   User user;
 
   public Appointment(LocalDateTime date, Activity activity,User user){

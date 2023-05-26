@@ -8,8 +8,15 @@ import com.adkr38.app.models.*;
 public class AppointmentDTO {
 
   public LocalDateTime date;
-  public Activity activity;
-  public User user;
+  public String activity;
+  public String username;
+
+  public void setUsername(String username){
+    this.username = username;
+  }
+  public String getUsername(){
+    return username;
+  }
 
   public LocalDateTime getDate(){
     return date;
@@ -19,11 +26,11 @@ public class AppointmentDTO {
     this.date = date;
   }
   
-  public Activity getActivity(){
+  public String getActivity(){
     return activity;
   }
   
-  public void setActivity(Activity activity){
+  public void setActivity(String activity){
     this.activity= activity;
   }
 

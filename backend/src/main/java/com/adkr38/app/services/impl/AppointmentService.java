@@ -42,9 +42,11 @@ public class AppointmentService{
       return 409;
     }
 
-    Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment.getId());
-    if (optionalAppointment.isPresent()){
-      return 0;
+    if (appointment.getId() != null){
+      Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment.getId());
+      if (optionalAppointment.isPresent()){
+        return 0;
+      }
     }
 
     appointmentRepository.save(appointment);

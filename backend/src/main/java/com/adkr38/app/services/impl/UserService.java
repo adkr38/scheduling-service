@@ -33,6 +33,12 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     @Autowired
     AppointmentRepository appointmentRepository;
 
+    @Autowired
+    AppointmentService appointmentService;
+
+    @Autowired
+    ActivityRepository activityRepository;
+
     /**
      * Autowired RoleRepository for database operations.
      */
@@ -165,20 +171,30 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void addAppointment(AppointmentDTO appointmentDTO, String username) {
-
-        Optional<User> optionalUser = userRepository.findByUsername(username);
-        if (optionalUser.isEmpty()){
-          return;
-        }
-        User user = optionalUser.get();
+    public int addAppointment(AppointmentDTO appointmentDTO) {
 
         Appointment appointmnet= new Appointment();
-        appointmnet.setActivity(appointmentDTO.getActivity());
-        appointmnet.setDate(appointmentDTO.getDate());
-        appointmnet.setUser(user);
 
-        appointmentRepository.save(appointmnet);
+
+        Optional<User> optionalUser = userRepository.findByUsername(appointmentDTO.getUsername());
+
+        if (optionalUser.isEmpty()){
+        appointmnet.setUser(userRepository.findByUsername("public").get());
+    } else{
+        appointmnet.setUser(optionalUser.get());
+    }
+
+        Optional<Activity> optionalActivity = activityRepository.findByActivity(appointmentDTO.getActivity());
+        if (optionalActivity.isEmpty()){
+        appointmnet.setActivity(activityRepository.findByActivity("Indeciso").get());
+    } else{
+        appointmnet.setActivity(optionalActivity.get());
+    }
+
+
+        appointmnet.setDate(appointmentDTO.getDate());
+
+        return appointmentService.saveAppointment(appointmnet);
 
     }
 

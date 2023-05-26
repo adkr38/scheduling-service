@@ -4,9 +4,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.adkr38.app.dtos.*;
 import com.adkr38.app.models.*;
+import com.adkr38.app.repositories.ActivityRepository;
 import com.adkr38.app.repositories.AppointmentRepository;
+import com.adkr38.app.repositories.UserRepository;
 import com.adkr38.app.services.impl.AppointmentService;
+import com.adkr38.app.services.impl.UserService;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,6 +23,13 @@ class AppointmentController{
   @Autowired
   private AppointmentRepository appointmentRepository;
 
+  @Autowired
+  private ActivityRepository activityRepository;
+
+  @Autowired
+  private UserService userService;
+
+
   @GetMapping("/all")
   private ResponseEntity<ResponseDTO> getAppointments(){
 
@@ -27,8 +38,9 @@ class AppointmentController{
   }
 
   @PostMapping("")
-  private ResponseEntity<ResponseDTO> saveAppointment(Appointment appointment){
-    int savedAppointment = appointmentService.saveAppointment(appointment);
+  private ResponseEntity<ResponseDTO> saveAppointment(@RequestBody AppointmentDTO appointmentDTO){
+    
+    int savedAppointment = userService.addAppointment(appointmentDTO);
 
     switch (savedAppointment){
       case 0:
@@ -44,11 +56,6 @@ class AppointmentController{
     }
 
     return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(), "Appointment created", 201));
-    // if (savedAppointment == 0){
-    //   return ResponseEntity.status(409).body(new ErrorDTO("Appointment already exists", 409));
-    // }
-    //
-    // return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(), "Appointment created", 201));
 
   }
 
