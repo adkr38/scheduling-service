@@ -1,21 +1,21 @@
 package com.adkr38.app.dtos;
 import lombok.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import com.adkr38.app.models.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentDTO {
 
-  public LocalDate date;
+  public LocalDateTime date;
   public Activity activity;
   public User user;
 
-  public LocalDate getDate(){
+  public LocalDateTime getDate(){
     return date;
   }
   
-  public void setDate(LocalDate date){
+  public void setDate(LocalDateTime date){
     this.date = date;
   }
   

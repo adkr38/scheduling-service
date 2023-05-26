@@ -30,11 +30,15 @@ public LocalDateTime getDate() {
 	return date;
 }
 
-public long getId() {
+public void setDate(LocalDateTime date) {
+	this.date = date;
+}
+
+public Long getId() {
 	return id;
 }
 
-public void setId(long id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -46,9 +50,6 @@ public void setUser(User user) {
 	this.user = user;
 }
 
-public void setDate(LocalDateTime date) {
-	this.date = date;
-}
 
 public Activity getActivity() {
 	return activity;
