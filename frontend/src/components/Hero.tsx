@@ -5,6 +5,7 @@ import React from "react";
 import * as bs from "react-icons/bs";
 import * as ai from "react-icons/ai";
 import * as gr from "react-icons/gr";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import Nav from "./Nav";
 // import { LoginContext } from "../context/LoginContext";
@@ -32,6 +33,7 @@ const Card = ({ icon, text }: CardProps) => {
 
 const Hero = () => {
   const { theme } = React.useContext(ThemeContext);
+  // const [cookies] = useCookies();
   // const { logged, username, sessionId } = React.useContext(LoginContext);
 
   const lightContainer: string =
@@ -78,10 +80,12 @@ const Hero = () => {
             text={"Agendar"}
           />
 
-          <Card
-            icon={<ai.AiOutlineBook size={30} className={iconStyle} />}
-            text={"Catálogo"}
-          />
+          <Link to="/Catalogue">
+            <Card
+              icon={<ai.AiOutlineBook size={30} className={iconStyle} />}
+              text={"Catálogo"}
+            />
+          </Link>
 
           <Card
             icon={<gr.GrCloudlinux size={30} className={iconStyle} />}
