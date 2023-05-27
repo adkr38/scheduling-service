@@ -79,8 +79,7 @@ public class AppApplication{
             userService.addRoleToUser("jane", "ROLE_USER");
             userService.addRoleToUser("chris", "ROLE_ADMIN");
             userService.addRoleToUser("chris", "ROLE_USER");
-            System.out.println(appointment);
-            AppointmentService.saveAppointment(appointment);
+
         };
     }
 

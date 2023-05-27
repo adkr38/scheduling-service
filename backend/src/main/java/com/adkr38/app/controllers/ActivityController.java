@@ -37,4 +37,17 @@ class ActivityController{
 
   }
 
+  @PutMapping("/update")
+  private ResponseEntity<ResponseDTO> updateActivity(@RequestBody Activity activity){
+    int updatedActivity = activityService.updateActivity(activity);
+
+    if (updatedActivity == 0){
+      return ResponseEntity.status(204).build();
+    }
+
+    return ResponseEntity.status(201).body(new SuccessDTO<>(List.of(), "Activity didn't exist and was created", 201));
+
+  }
+
+
 }
