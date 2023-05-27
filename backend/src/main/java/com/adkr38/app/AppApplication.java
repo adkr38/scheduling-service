@@ -65,13 +65,15 @@ public class AppApplication{
             userService.saveRole(new Role(null,"ROLE_ADMIN"));
 
             userService.saveUser(johnDoe);
+            userService.saveUser(new User("admin", "admin", "admin", new ArrayList<>(),new ArrayList<>()));
             userService.saveUser(new User("Public", "public", "1234", new ArrayList<>(),new ArrayList<>()));
             userService.saveUser(new User("James Smith", "james", "1234", new ArrayList<>(),new ArrayList<>()));
             userService.saveUser(new User("Jane Carry", "jane", "1234", new ArrayList<>(), new ArrayList<>()));
             userService.saveUser(new User("Chris Anderson", "chris", "1234", new ArrayList<>(),new ArrayList<>()));
     
+            userService.addRoleToUser("admin", "ROLE_ADMIN");
+            userService.addRoleToUser("admin", "ROLE_USER");
             userService.addRoleToUser("public", "ROLE_USER");
-            userService.addRoleToUser("public", "ROLE_ADMIN");
             userService.addRoleToUser("john", "ROLE_USER");
             userService.addRoleToUser("james", "ROLE_ADMIN");
             userService.addRoleToUser("jane", "ROLE_USER");
