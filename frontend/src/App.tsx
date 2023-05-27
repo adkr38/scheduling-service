@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Catalogue from "./components/Catalogue";
+import Appointment from "./components/Appointment";
 import { ThemeContext } from "./context/ThemeContext";
 import { Routes, Route, HashRouter, Outlet, Navigate } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/catalogue" element={<Catalogue />} />
+          <Route path="/appointment" element={<Appointment />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
 

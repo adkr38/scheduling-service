@@ -1,15 +1,35 @@
 import { User } from "../types/User";
+import { AppointmentDTO } from "../types/Appointment";
+
+async function postAppointment(sessionId: string, dto: AppointmentDTO) {
+  const response = await fetch("http://localhost:8080/api/appointment", {
+    method: "POST",
+    body: JSON.stringify(dto),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionId}`,
+    },
+  });
+  return response;
+}
+
+async function getCatalogue() {
+  const response = await fetch("http://localhost:8080/api/activity/all", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
 
 async function validateSession(sessionId: string) {
-  console.log("Validating ", sessionId);
   const response = await fetch("http://localhost:8080/api/validate", {
     headers: {
       Authorization: `Bearer ${sessionId}`,
     },
   });
-
-  const data = await response.json();
-  console.log(data);
 
   return response.ok;
 }
@@ -38,7 +58,6 @@ async function logIn(
 }
 
 async function registerUser(user: User): Promise<boolean> {
-  console.log(JSON.stringify(user));
   const response = await fetch("http://localhost:8080/api/users", {
     method: "POST",
     body: JSON.stringify(user),
@@ -49,4 +68,10 @@ async function registerUser(user: User): Promise<boolean> {
   return response.ok;
 }
 
-export default { validateSession, registerUser, logIn };
+export default {
+  validateSession,
+  registerUser,
+  logIn,
+  getCatalogue,
+  postAppointment,
+};

@@ -1,5 +1,6 @@
 export type Activity = {
+  id: number;
   activity: string;
-  duration: number;
+  price: number;
   imageUrl: string;
 };

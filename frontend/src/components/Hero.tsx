@@ -75,12 +75,14 @@ const Hero = () => {
             text={"Disponibilidad"}
           />
 
-          <Card
-            icon={<ai.AiOutlineFileSearch size={30} className={iconStyle} />}
-            text={"Agendar"}
-          />
+          <Link to="/appointment">
+            <Card
+              icon={<ai.AiOutlineFileSearch size={30} className={iconStyle} />}
+              text={"Agendar"}
+            />
+          </Link>
 
-          <Link to="/Catalogue">
+          <Link to="/catalogue">
             <Card
               icon={<ai.AiOutlineBook size={30} className={iconStyle} />}
               text={"Catálogo"}

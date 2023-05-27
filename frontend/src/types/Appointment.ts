@@ -6,3 +6,9 @@ export type Appointment = {
   activity: Activity;
   user: User;
 };
+
+export type AppointmentDTO = {
+  date: string;
+  activity: string;
+  username: string;
+};
