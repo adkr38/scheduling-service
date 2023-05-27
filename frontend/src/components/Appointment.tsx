@@ -74,11 +74,15 @@ const Appointment = () => {
         return;
       } else {
         setLoading(false);
-        setResponseMessage("No se pudo conectar al servidor.");
+        setResponseMessage(
+          "No se pudo conectar al servidor, asegurese de estar registrado."
+        );
       }
     } catch (error) {
       setLoading(false);
-      setResponseMessage("No se pudo conectar al servidor.");
+      setResponseMessage(
+        "No se pudo conectar al servidor, asegurese de estar registrado."
+      );
     }
   };
   return (
