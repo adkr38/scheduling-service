@@ -6,7 +6,7 @@ Backend: SpringBoot, SpringSecurity, OAuth2, JPA, JUnit, MySql.<br>
 Frontend: Typescript, React, TailwindCss.
 
 Demo:
-<video src="./other/demo.mov">
+<video src="./other/demo.mp4"/>
 
 Class Diagram:
 <img src="./other/UML.jpg" style="margin-top:15px;">
