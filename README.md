@@ -5,7 +5,8 @@ Ironhack backend development bootcamp final project.
 Backend: SpringBoot, SpringSecurity, OAuth2, JPA, JUnit, MySql.<br>
 Frontend: Typescript, React, TailwindCss.
 
-<video width = 720 src = "./other/demo.mp4"/>
+![API Demo](
+https://github.com/adkr38/scheduling-service/assets/87658936/85f9f0e7-e3b0-497c-b3e5-f5f0eea7c027)
 
 Class Diagram:
 <img src="./other/UML.jpg" style="margin-top:15px;">
